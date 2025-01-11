@@ -130,7 +130,7 @@ class SimpleTreeTests(unittest.TestCase):
 
         self.assertEqual(self.simple_tree.Count(), 5)
 
-    def test_regression_LeafCount(self):
+    def testLeafCount(self):
         self.assertEqual(self.simple_tree.LeafCount(), 0)
 
         root = SimpleTreeNode(1, None)
