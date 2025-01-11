@@ -25,7 +25,7 @@ class SimpleTree:
         if NodeToDelete is not None:
             NodeToDelete.Parent.Children.remove(NodeToDelete)
             NodeToDelete.Parent = None
-            while NodeToDelete.Children != []:
+            while NodeToDelete.Children:
                 self.DeleteNode(NodeToDelete.Children[0])
 
     def GetAllNodes(self):
