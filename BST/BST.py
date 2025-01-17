@@ -67,8 +67,9 @@ class BST:
             while node.RightChild is not None:
                 node = node.RightChild
             return node
-        while node.LeftChild is not None:
-            node = node.LeftChild
+        else:
+            while node.LeftChild is not None:
+                node = node.LeftChild
             return node
 
     def isLeaf(self, node):
