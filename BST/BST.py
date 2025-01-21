@@ -139,3 +139,56 @@ class BST:
         rightCount = self.CountRecursive(node.RightChild)
         leftCount = self.CountRecursive(node.LeftChild)
         return 1 + rightCount + leftCount
+
+    def WideAllNodes(self):
+        result = []
+        if self.Root is None:
+            return ()
+        nodes = [self.Root]
+
+        while nodes:
+            currentNodes = []
+            for item in nodes:
+                result.append(item)
+                if item.LeftChild:
+                    currentNodes += [item.LeftChild]
+                if item.RightChild:
+                    currentNodes += [item.RightChild]
+            nodes = currentNodes
+
+        return tuple(result)
+
+    def DeepAllNodes(self, order):
+        result = []
+        if self.Root is None:
+            return ()
+
+        def inOrder(node):
+            if node is None:
+                return ()
+            inOrder(node.LeftChild)
+            result.append(node)
+            inOrder(node.RightChild)
+
+        def postOrder(node):
+            if node is None:
+                return ()
+            postOrder(node.LeftChild)
+            postOrder(node.RightChild)
+            result.append(node)
+
+        def preOrder(node):
+            if node is None:
+                return ()
+            result.append(node)
+            preOrder(node.LeftChild)
+            preOrder(node.RightChild)
+
+        if order == 0:
+            inOrder(self.Root)
+        elif order == 1:
+            postOrder(self.Root)
+        elif order == 2:
+            preOrder(self.Root)
+
+        return tuple(result)
