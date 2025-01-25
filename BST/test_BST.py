@@ -93,6 +93,24 @@ class BSTTests(unittest.TestCase):
         self.tree.DeleteNodeByKey(1)
         self.assertEqual(self.tree.Count(), 5)
 
+    def testDeepAllNodes(self):
+        tree = BST(None)
+        self.assertEqual(tree.DeepAllNodes(0), ())
+        self.assertEqual(tree.DeepAllNodes(1), ())
+        self.assertEqual(tree.DeepAllNodes(2), ())
+        self.assertEqual(self.tree.DeepAllNodes(0),
+                         (self.rootLeft, self.root, self.rootRightLeft, self.rootRight, self.rootRightRight))
+        self.assertEqual(self.tree.DeepAllNodes(1),
+                         (self.rootLeft, self.rootRightLeft, self.rootRightRight, self.rootRight, self.root))
+        self.assertEqual(self.tree.DeepAllNodes(2),
+                         (self.root, self.rootLeft, self.rootRight, self.rootRightLeft, self.rootRightRight))
+
+    def testWideAllNodes(self):
+        tree = BST(None)
+        self.assertEqual(tree.WideAllNodes(), ())
+        self.assertEqual(self.tree.WideAllNodes(),
+                         (self.root, self.rootLeft, self.rootRight, self.rootRightLeft, self.rootRightRight))
+
 
 if __name__ == "__main__":
     unittest.main()

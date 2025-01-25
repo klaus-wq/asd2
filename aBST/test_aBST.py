@@ -27,6 +27,8 @@ class aBSTTests(unittest.TestCase):
         self.assertEqual(len(tree2.Tree), 63)
 
     def testFindKeyIndex(self):
+        tree = aBST(0)
+        self.assertEqual(tree.FindKeyIndex(50), 0)
         self.assertEqual(self.tree.FindKeyIndex(50), 0)
         self.assertEqual(self.tree.FindKeyIndex(62), 5)
         self.assertEqual(self.tree.FindKeyIndex(43), 10)
