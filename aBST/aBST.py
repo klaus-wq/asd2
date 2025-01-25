@@ -9,13 +9,13 @@ class aBST:
 
     def FindKeyIndex(self, key):
         # ищем в массиве индекс ключа
-        self.FindKeyIndexRecursive(key, 0)
+        return self.FindKeyIndexRecursive(key, 0)
 
     def FindKeyIndexRecursive(self, key, index):
-        if index >= len(self.Tree):
+        if index > len(self.Tree):
             return None
         if self.Tree[index] is None:
-            return index * (-1)
+            return -index
         if self.Tree[index] == key:
             return index
         if self.Tree[index] > key:
@@ -26,6 +26,6 @@ class aBST:
         index = self.FindKeyIndex(key)
         if index is None:
             return -1
-        if index < 0:
+        if index < 0 or index == 0:
             self.Tree[abs(index)] = key
         return abs(index)
