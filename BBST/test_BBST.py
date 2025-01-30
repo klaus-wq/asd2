@@ -2,9 +2,9 @@ import unittest
 from BBST import GenerateBBSTArray
 
 
-class TestGenerateBBSTArray(unittest.TestCase):
+class GenerateBBSTArrayTests(unittest.TestCase):
 
-    def test_empty_array(self):
+    def testGenerateBBSTArray(self):
         self.assertEqual(GenerateBBSTArray([]), [])
         self.assertEqual(GenerateBBSTArray([1]), [1])
         self.assertEqual(GenerateBBSTArray([2, 5]), [5, 2])
