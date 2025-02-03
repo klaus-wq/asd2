@@ -38,5 +38,5 @@ class BalancedBST:
             return True, 0
         left, leftLevel = self.IsBalancedRecursive(tree.LeftChild)
         right, rightLevel = self.IsBalancedRecursive(tree.RightChild)
-        is_balanced = (left and right and abs(leftLevel - rightLevel) <= 1)
-        return is_balanced, max(leftLevel, rightLevel) + 1
+        isBalanced = (left and right and abs(leftLevel - rightLevel) <= 1)
+        return isBalanced, max(leftLevel, rightLevel) + 1
