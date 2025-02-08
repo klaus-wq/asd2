@@ -46,7 +46,7 @@ class Heap:
             maxIndex = rightChildIndex
 
         if maxIndex == currentIndex:
-            return
+            return None
 
         self.HeapArray[currentIndex], self.HeapArray[maxIndex] = self.HeapArray[maxIndex], self.HeapArray[currentIndex]
         self.shiftDown(maxIndex)
