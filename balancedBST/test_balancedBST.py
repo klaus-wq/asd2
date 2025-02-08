@@ -1,6 +1,6 @@
 import unittest
 
-from balancedBST import BalancedBST, BSTNode
+from balancedBST import BalancedBST
 
 
 class BalancedBSTTests(unittest.TestCase):
