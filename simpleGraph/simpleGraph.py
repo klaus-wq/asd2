@@ -18,8 +18,8 @@ class SimpleGraph:
         for i in range(self.max_vertex):
             if self.vertex[i] is None:
                 self.vertex[i] = Vertex(v)
-                return
-        return
+                return None
+        return None
         # здесь и далее, параметры v -- индекс вершины
 
     # в списке  vertex
@@ -30,6 +30,7 @@ class SimpleGraph:
             for i in range(self.max_vertex):
                 self.m_adjacency[v][i] = 0
                 self.m_adjacency[i][v] = 0
+        return None
 
     def IsEdge(self, v1, v2):
         # True если есть ребро между вершинами v1 и v2
@@ -42,9 +43,11 @@ class SimpleGraph:
         if v1 < self.max_vertex and v2 < self.max_vertex and v1 >= 0 and v2 >= 0:
             self.m_adjacency[v1][v2] = 1
             self.m_adjacency[v2][v1] = 1
+        return None
 
     def RemoveEdge(self, v1, v2):
         # удаление ребра между вершинами v1 и v2
         if v1 < self.max_vertex and v2 < self.max_vertex and v1 >= 0 and v2 >= 0:
             self.m_adjacency[v1][v2] = 0
             self.m_adjacency[v2][v1] = 0
+        return None
