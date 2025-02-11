@@ -20,8 +20,8 @@ class SimpleGraph:
                 self.vertex[i] = Vertex(v)
                 return None
         return None
-        # здесь и далее, параметры v -- индекс вершины
 
+    # здесь и далее, параметры v -- индекс вершины
     # в списке  vertex
     def RemoveVertex(self, v):
         # ваш код удаления вершины со всеми её рёбрами
