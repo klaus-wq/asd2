@@ -61,3 +61,15 @@ class SimpleTree:
             if not item.Children:
                 leafCount += 1
         return leafCount
+
+    def EvenTrees(self):
+        pairs = []
+        self.CheckSubTree(self.Root, pairs)
+        return pairs
+
+    def CheckSubTree(self, currentNode, pairs):
+        for child in currentNode.Children:
+            self.CheckSubTree(child, pairs)
+            if len(self.GetAllNodesRecursive(child)) % 2 == 0:
+                pairs.append(currentNode)
+                pairs.append(child)
