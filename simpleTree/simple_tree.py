@@ -63,13 +63,13 @@ class SimpleTree:
         return leafCount
 
     def EvenTrees(self):
-        pairs = []
-        self.CheckSubTree(self.Root, pairs)
-        return pairs
+        return self.CheckSubTree(self.Root)
 
-    def CheckSubTree(self, currentNode, pairs):
+    def CheckSubTree(self, currentNode):
+        pairs = []
         for child in currentNode.Children:
-            self.CheckSubTree(child, pairs)
+            self.CheckSubTree(child)
             if len(self.GetAllNodesRecursive(child)) % 2 == 0:
                 pairs.append(currentNode)
                 pairs.append(child)
+        return pairs
