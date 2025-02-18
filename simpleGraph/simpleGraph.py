@@ -66,10 +66,8 @@ class SimpleGraph:
     def DepthFirstSearchRecursive(self, VFrom, VTo, path):
         self.vertex[VFrom].Hit = True
         path.push(self.vertex[VFrom])
-        print('1', path.stack, self.m_adjacency)
         if self.m_adjacency[VFrom][VTo] == 1:
             path.push(self.vertex[VTo])
-            print('2', path.stack)
             return path
         for i in range(self.max_vertex):
             if self.m_adjacency[VFrom][i] == 1 and not self.vertex[i].Hit:
