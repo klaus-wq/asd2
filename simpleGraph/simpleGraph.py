@@ -57,6 +57,8 @@ class SimpleGraph:
         # узлы задаются позициями в списке vertex
         # возвращается список узлов -- путь из VFrom в VTo
         # или [] если пути нету
+        if self.vertex[VFrom] is None or self.vertex[VTo] is None:
+            return []
         for v in self.vertex:
             if v is not None:
                 v.Hit = False

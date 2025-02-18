@@ -51,6 +51,22 @@ class TestsSimpleGraph(unittest.TestCase):
         self.assertFalse(self.graph.IsEdge(1, 0))
         self.assertFalse(self.graph.IsEdge(2, 0))
 
+    def testDepthFirstSearch(self):
+        self.graph.AddVertex(10)
+        self.graph.AddEdge(0, 0)
+        path1 = self.graph.DepthFirstSearch(0, 0)
+        self.assertEqual([v.Value for v in path1], [10, 10])
+        self.graph.AddVertex(20)
+        self.graph.AddVertex(30)
+        path2 = self.graph.DepthFirstSearch(0, 2)
+        self.assertEqual(path2, [])
+        self.graph.AddEdge(0, 1)
+        self.graph.AddEdge(0, 2)
+        path3 = self.graph.DepthFirstSearch(0, 2)
+        self.assertEqual([v.Value for v in path3], [10, 30])
+        path4 = self.graph.DepthFirstSearch(1, 2)
+        self.assertEqual([v.Value for v in path4], [20, 10, 30])
+
 
 if __name__ == "__main__":
     unittest.main()
