@@ -2,6 +2,7 @@ class Vertex:
 
     def __init__(self, val):
         self.Value = val
+        self.Hit = False
 
 
 class SimpleGraph:
@@ -51,3 +52,53 @@ class SimpleGraph:
             self.m_adjacency[v1][v2] = 0
             self.m_adjacency[v2][v1] = 0
         return None
+
+    def DepthFirstSearch(self, VFrom, VTo):
+        # узлы задаются позициями в списке vertex
+        # возвращается список узлов -- путь из VFrom в VTo
+        # или [] если пути нету
+        for v in self.vertex:
+            if v is not None:
+                v.Hit = False
+        path = Stack()
+        return self.DepthFirstSearchRecursive(VFrom, VTo, path).stack
+
+    def DepthFirstSearchRecursive(self, VFrom, VTo, path):
+        self.vertex[VFrom].Hit = True
+        path.push(self.vertex[VFrom])
+        print('1', path.stack, self.m_adjacency)
+        if self.m_adjacency[VFrom][VTo] == 1:
+            path.push(self.vertex[VTo])
+            print('2', path.stack)
+            return path
+        for i in range(self.max_vertex):
+            if self.m_adjacency[VFrom][i] == 1 and not self.vertex[i].Hit:
+                tpmPath = self.DepthFirstSearchRecursive(i, VTo, path)
+                if tpmPath.size() == 0 or tpmPath.stack[-1] == self.vertex[VTo]:
+                    return tpmPath
+        path.pop()
+        return path
+
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def size(self):
+        return len(self.stack)
+
+    def pop(self):
+        if self.size() == 0:
+            return None
+        return self.stack.pop()
+
+    def push(self, value):
+        self.stack.append(value)
+
+    def peek(self):
+        if self.size() == 0:
+            return None
+        return self.stack[0]
+
+
+
+
