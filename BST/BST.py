@@ -192,3 +192,19 @@ class BST:
             preOrder(self.Root)
 
         return tuple(result)
+
+    def Identic(self, paramTree):
+        return self.IdenticRecursive(self.Root, paramTree.Root)
+
+    def IdenticRecursive(self, initNode, paramNode):
+        if initNode is None and paramNode is None:
+            return True
+        if initNode is None or paramNode is None:
+            return False
+        if initNode.NodeKey != paramNode.NodeKey:
+            return False
+        left = self.IdenticRecursive(initNode.LeftChild, paramNode.LeftChild)
+        right = self.IdenticRecursive(initNode.RightChild, paramNode.RightChild)
+        if left and right:
+            return True
+        return False

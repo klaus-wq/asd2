@@ -111,6 +111,33 @@ class BSTTests(unittest.TestCase):
         self.assertEqual(self.tree.WideAllNodes(),
                          (self.root, self.rootLeft, self.rootRight, self.rootRightLeft, self.rootRightRight))
 
+    def testIdentic(self):
+        self.tree1 = BST(self.root)
+        self.assertTrue(self.tree.Identic(self.tree1))
+
+        self.root2 = BSTNode(1, 1, None)
+        self.rootLeft2 = BSTNode(2, 2, self.root2)
+        self.rootRight2 = BSTNode(6, 6, self.root2)
+        self.rootRightLeft2 = BSTNode(5, 5, self.rootRight2)
+        self.rootRight2.LeftChild3 = self.rootRightLeft2
+        self.root2.RightChild3 = self.rootRight2
+        self.tree2 = BST(self.root2)
+        self.assertFalse(self.tree.Identic(self.tree2))
+
+        self.tree3 = BST(None)
+        self.assertFalse(self.tree.Identic(self.tree3))
+
+        self.tree4 = BST(None)
+        self.tree5 = BST(None)
+        self.assertTrue(self.tree4.Identic(self.tree5))
+
+        self.root6 = BSTNode(10, 1, None)
+        self.rootLeft6 = BSTNode(2, 2, self.root6)
+        self.rootRight6 = BSTNode(6, 6, self.root2)
+        self.root6.rootLeft6 = self.rootRight6
+        self.tree6 = BST(self.root6)
+        self.assertFalse(self.tree.Identic(self.tree6))
+
 
 if __name__ == "__main__":
     unittest.main()
