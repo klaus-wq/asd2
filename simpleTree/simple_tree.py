@@ -75,10 +75,17 @@ class SimpleTree:
         return pairs
 
     def Symmetric(self):
+        return self.SymmetricRecursive(self.Root.Children)
+
+    def SymmetricRecursive(self, children):
         count = 0
-        for child in self.Root.Children:
+        nodes = []
+        for child in children:
+            nodes.extend(child.Children)
             if count == 0:
                 count = len(child.Children)
             if count != len(child.Children):
                 return False
+        if len(nodes) > 0:
+            return self.SymmetricRecursive(nodes)
         return True
