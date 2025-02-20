@@ -73,3 +73,12 @@ class SimpleTree:
                 pairs.append(currentNode)
                 pairs.append(child)
         return pairs
+
+    def Symmetric(self):
+        count = 0
+        for child in self.Root.Children:
+            if count == 0:
+                count = len(child.Children)
+            if count != len(child.Children):
+                return False
+        return True
