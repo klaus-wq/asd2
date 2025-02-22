@@ -3,6 +3,7 @@ class Vertex:
     def __init__(self, val):
         self.Value = val
         self.Hit = False
+        self.Parent = None
 
 
 class SimpleGraph:
@@ -77,6 +78,38 @@ class SimpleGraph:
         path.pop()
         return path
 
+    def BreadthFirstSearch(self, VFrom, VTo):
+        # узлы задаются позициями в списке vertex
+        # возвращается список узлов -- путь из VFrom в VTo
+        # или [] если пути нету
+        for v in self.vertex:
+            if v is not None:
+                v.Hit = False
+                v.Parent = None
+        queue = Queue()
+        queue.enqueue(VFrom)
+        self.vertex[VFrom].Hit = True
+        return self.BreadthFirstSearchRecursive(VTo, queue)
+
+    def BreadthFirstSearchRecursive(self, VTo, queue):
+        if queue.size() == 0:
+            return []
+        current = queue.dequeue()
+        for i in range(self.max_vertex):
+            if self.m_adjacency[current][i] == 1 and not self.vertex[i].Hit:
+                self.vertex[i].Hit = True
+                self.vertex[i].Parent = current
+                queue.enqueue(i)
+                if i == VTo:
+                    return self.GetPath([], VTo)
+        return self.BreadthFirstSearchRecursive(VTo, queue)
+
+    def GetPath(self, path, VTo):
+        path.insert(0, self.vertex[VTo])
+        if self.vertex[VTo].Parent is None:
+            return path
+        return self.GetPath(path, self.vertex[VTo].Parent)
+
 class Stack:
     def __init__(self):
         self.stack = []
@@ -96,6 +129,21 @@ class Stack:
         if self.size() == 0:
             return None
         return self.stack[0]
+
+class Queue:
+    def __init__(self):
+       self.queue = []
+
+    def enqueue(self, item):
+        self.queue.append(item)
+
+    def dequeue(self):
+        if self.size() > 0:
+            return self.queue.pop(0)
+        return None
+
+    def size(self):
+        return len(self.queue)
 
 
 
