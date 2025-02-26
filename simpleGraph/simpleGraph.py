@@ -110,6 +110,32 @@ class SimpleGraph:
             return path
         return self.GetPath(path, self.vertex[VTo].Parent)
 
+    def WeakVertices(self):
+        # возвращает список узлов вне треугольников
+        weakVertices = []
+        for i in self.vertex:
+            if i is None:
+                continue
+            index = self.vertex.index(i)
+            if len(self.m_adjacency[index]) < 2:
+                weakVertices.append(i)
+                continue
+            vertexesNear = []
+            for j in range(len(self.m_adjacency)):
+                if self.m_adjacency[index][j] == 1:
+                    vertexesNear.append(self.vertex[j])
+            isTriangle = False
+            for k in vertexesNear:
+                for m in vertexesNear:
+                    if k != m and self.m_adjacency[self.vertex.index(k)][self.vertex.index(m)] == 1:
+                        isTriangle = True
+                        break
+                if isTriangle:
+                    break
+            if isTriangle is False:
+                weakVertices.append(i)
+        return weakVertices
+
 class Stack:
     def __init__(self):
         self.stack = []
